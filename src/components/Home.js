@@ -1,5 +1,4 @@
 import React from 'react';
-import HomeText from './HomeText';
 import Users from './Users';
 import Products from './Products';
 import Category from './Category';
@@ -31,6 +30,20 @@ function Home() {
     useEffect(()=>{
         getProducts()
     }, []);
+    let [categories, setCategories] = useState([]);
+
+    let getCategories = async () => {
+        await fetch('http://localhost:3500/api/products/categories')
+        .then(response => response.json())
+        .then(data=> setCategories(data))
+    };
+    useEffect(()=>{
+       getCategories()
+    }, []);
+    let allCategories = {
+        title: 'Total de Categorías -',
+        total: categories.count,
+    }
     let allProducts = {
         title: 'Total de Productos',
         total: products.count,
@@ -42,17 +55,16 @@ function Home() {
         title: 'Total de Usuarios',
         total: users.count
     };
-    console.log(products)
-    let props = [allUsers, allProducts];
+    let props = [allUsers, allProducts, allCategories];
   return (
     <React.Fragment>
         <div>
             <main className="main-home">
                 <section className="portada" id="home">
                     <div className="portadatexto">
-                        <h3>¡Bienvenidos a el Dashboard de Petitos Shop!</h3>
+                        <h3>¡Petitos te da la bievenida a nuestro Dashboard!</h3>
                         <p>Aquí podras ver los datos de nuestro sitio Web.</p>
-                        <p> Siempre puedes contactar a nuestro soporte para cualquier consulta o duda.</p>
+                        <p>Siempre puedes contactar a nuestro soporte para cualquier consulta o duda.</p>
                     </div>
                 </section>
                 {/* <!-- Principio de la caja de comentarios  --> */}
@@ -70,7 +82,6 @@ function Home() {
                 <div className="box-container">
                     
                     <Routes>
-                        <Route path="/" exact element={<HomeText />}/>
                         <Route path="/users" element={<Users />}/>
                         <Route path="/products" element={<Products />}/>
                         <Route path="/category" element={<Category />}/>

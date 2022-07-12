@@ -1,38 +1,34 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import Card from './Card';
+import IndCategory from './IndCategory';
 
 function Category() {
    //Trayendo los productos
-   let [products, setProducts] = useState([]);
+   let [categories, setCategories] = useState([]);
 
-   let getProducts = async () => {
-       await fetch('http://localhost:3500/api/products')
+   let getCategories = async () => {
+       await fetch('http://localhost:3500/api/products/categories')
        .then(response => response.json())
-       .then(data=> setProducts(data))
+       .then(data=> setCategories(data))
    };
    useEffect(()=>{
-       getProducts()
+      getCategories()
    }, []);
-   let allProducts = {
-       title: 'Categorías -',
-       total: products.categoryCount,
+   let category = [];
+   if(categories.categories !== undefined){
+      category = categories.categories
    }
-   let productsProps = [allProducts]
+
   return (
     <React.Fragment>
-              {/* <!-- Principio de los productos  --> */}
-              {/* <!-- deal section ends --> */}
-
-              <section class="products" id="products">
-                  <h1>Categorías:</h1>
-                  <div class="box-container">
-                  {productsProps.map((props,i)=>{
-                        return <Card {...props} key={i} />
-                      })}
-                  </div>
-              </section>
-              {/* <!-- Final de los productos  --> */}
+      <section className="products" id="products">
+          <h1>Categorías:</h1>
+          <div className="box-container">
+          {category.map((cat,i)=>{
+                return <IndCategory {...cat} key={i} />
+              })}
+          </div>
+      </section>
     </React.Fragment>
   )
 }

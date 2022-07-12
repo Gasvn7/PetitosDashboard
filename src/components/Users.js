@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import Card from './Card';
+import IndUser from './IndUser';
 
 function Users() {
     //Trayendo los usuarios
@@ -14,27 +14,22 @@ function Users() {
     useEffect(()=>{
         getUsers()
     }, []);
-
-    let allUsers = {
-        title: 'Usuarios -',
-        total: users.count
-    };
-    let userProps = [allUsers];
+    let user = [];
+    if(users.user !== undefined){
+        user = users.user
+        console.log(user)
+    }
 
   return (
     <React.Fragment>
-              {/* <!-- Principio de los productos  --> */}
-              {/* <!-- deal section ends --> */}
-
-              <section class="products" id="products">
-                  <h1>Usuarios:</h1>
-                  <div class="box-container">
-                  {userProps.map((props,i)=>{
-                        return <Card {...props} key={i} />
-                      })}
-                  </div>
-              </section>
-              {/* <!-- Final de los productos  --> */}
+      <section className="products" id="products">
+          <h1>Usuarios:</h1>
+          <div className="box-container">
+          {user.map((props,i)=>{
+                return <IndUser {...props} key={i} />
+              })}
+          </div>
+      </section>
     </React.Fragment>
   )
 }

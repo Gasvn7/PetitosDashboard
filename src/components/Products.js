@@ -1,6 +1,6 @@
 import React from 'react'
 import {useEffect, useState} from 'react';
-import Card from './Card';
+import IndProduct from './IndProduct';
 
 
 function Products() {
@@ -15,29 +15,22 @@ function Products() {
     useEffect(()=>{
         getProducts()
     }, []);
-    let allProducts = {
-        title: 'Productos -',
-        total: products.count,
-        category: products.categoryCount,
-        brand: products.brandCount,
-        size: products.sizeCount
+    let product = [];
+    if(products.products !== undefined){
+        product = products.products
+        console.log(product)
     }
-    let productsProps = [allProducts]
 
   return (
     <React.Fragment>
-              {/* <!-- Principio de los productos  --> */}
-              {/* <!-- deal section ends --> */}
-
-              <section class="products" id="products">
-                  <h1>Productos:</h1>
-                  <div class="box-container">
-                  {productsProps.map((props,i)=>{
-                        return <Card {...props} key={i} />
-                      })}
-                  </div>
-              </section>
-              {/* <!-- Final de los productos  --> */}
+        <section className="products" id="products">
+            <h1>Productos:</h1>
+            <div className="box-container">
+            {product.map((props,i)=>{
+                return <IndProduct {...props} key={i} />
+                })}
+            </div>
+        </section>
     </React.Fragment>
   )
 }

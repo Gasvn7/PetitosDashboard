@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <React.Fragment>
-        <header className="header-top">
+        {/* <header className="header-top">
             <div className="container-headder">
                 <div className="header-inter">
                     <nav>
@@ -25,7 +25,7 @@ function Header() {
                     
                 </div>
             </div>
-        </header>
+        </header> */}
         <nav className="nav-bar">
             
             <div className="nav-bar-inter">
