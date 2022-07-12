@@ -4,30 +4,24 @@ import IndUser from './IndUser';
 
 function Users() {
     //Trayendo los usuarios
-    let [users, setUsers] = useState([]);
+    let [user, setUser] = useState([]);
     
-    let getUsers = async () => {
-        await fetch('http://localhost:3500/api/users')
+    let getUser = async () => {
+        await fetch('http://localhost:3500/api/users/new')
         .then(response => response.json())
-        .then(data => setUsers(data))
+        .then(data => setUser(data))
     }
     useEffect(()=>{
-        getUsers()
+        getUser()
     }, []);
-    let user = [];
-    if(users.user !== undefined){
-        user = users.user
-        console.log(user)
-    }
+    console.log(user)
 
   return (
     <React.Fragment>
       <section className="products" id="products">
-          <h1>Usuarios:</h1>
+          <h1>Usuario:</h1>
           <div className="box-container">
-          {user.map((props,i)=>{
-                return <IndUser {...props} key={i} />
-              })}
+              <IndUser {...user} />
           </div>
       </section>
     </React.Fragment>

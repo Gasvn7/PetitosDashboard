@@ -62,7 +62,7 @@ function Home() {
             <main className="main-home">
                 <section className="portada" id="home">
                     <div className="portadatexto">
-                        <h3>¡Petitos te da la bievenida a nuestro Dashboard!</h3>
+                        <h3>¡Petitos te da la bievenida al Dashboard!</h3>
                         <p>Aquí podras ver los datos de nuestro sitio Web.</p>
                         <p>Siempre puedes contactar a nuestro soporte para cualquier consulta o duda.</p>
                     </div>
