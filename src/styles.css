@@ -1096,6 +1096,9 @@ header {
     padding: 1rem 0;
   }
   
+  .box-container .box .content .center{
+    text-align: center;
+  }
   /*Banner sin nombre*/
   .fas,
   .far {

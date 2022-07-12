@@ -5,7 +5,8 @@ import Products from './Products';
 import Category from './Category';
 import Error404 from './Error404';
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
+import Card from './Card';
 
 function Home() {
     //Trayendo los usuarios
@@ -19,7 +20,6 @@ function Home() {
     useEffect(()=>{
         getUsers()
     }, []);
-
     //Trayendo los productos
     let [products, setProducts] = useState([]);
 
@@ -31,20 +31,19 @@ function Home() {
     useEffect(()=>{
         getProducts()
     }, []);
-
-    let allUsers = {
-        total: users.count || 'No hay usuarios'
-    };
     let allProducts = {
-        total: products.count || 'No hay productos',
-        category: products.categoryCount || 'No hay categorías',
-        brand: products.brandCount || 'No hay marcas',
-        size: products.sizeCount || 'No hay tallas'
+        title: 'Total de Productos',
+        total: products.count,
+        category: products.categoryCount,
+        brand: products.brandCount,
+        size: products.sizeCount
     }
-    let props = [allUsers, allProducts];
-
+    let allUsers = {
+        title: 'Total de Usuarios',
+        total: users.count
+    };
     console.log(products)
-
+    let props = [allUsers, allProducts];
   return (
     <React.Fragment>
         <div>
@@ -56,6 +55,18 @@ function Home() {
                         <p> Siempre puedes contactar a nuestro soporte para cualquier consulta o duda.</p>
                     </div>
                 </section>
+                {/* <!-- Principio de la caja de comentarios  --> */}
+                <section className="CAJADECOMENTARIOS" id="review">
+
+                    <h1 className="heading">Paneles de Previsualización</h1>
+
+                    <div className="box-container slider">
+                        {props.map((prop,i)=>{
+                            return <Card {...prop} key={i} />
+                        })}
+                    </div>
+                </section>
+                {/* <!-- Final de la caja de comentarios  --> */}
                 <div className="box-container">
                     
                     <Routes>
