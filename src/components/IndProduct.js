@@ -7,7 +7,7 @@ function Individual(props) {
             <div className="user">
                 <div className="user-info">
                     <h1>Producto {props.id}</h1>
-                    <span><img src={`http://localhost:3500/img/usersImages/${props.image}`}></img></span><br></br>
+                    <span><img src={`http://localhost:3500/img/usersImages/${props.image}`}alt={`no existe imagen`}></img></span><br></br>
                     
                     <span>Nombre: {props.name}</span><br/>
                     <span>Detalles: {props.details}</span><br/>
