@@ -33,12 +33,14 @@ function Home() {
     let [categories, setCategories] = useState([]);
 
     let getCategories = async () => {
-        await fetch('http://localhost:3500/api/products/categories')
+        await fetch('http://localhost:3500/api/products/categoriescont')
         .then(response => response.json())
         .then(data=> setCategories(data))
+        
     };
     useEffect(()=>{
        getCategories()
+       console.log("asd",categories)
     }, []);
     let allCategories = {
         title: 'Total de Categorías -',
